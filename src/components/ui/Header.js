@@ -89,17 +89,28 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerIconContainer: {
     marginLeft: "auto",
-  
-    "&:hover" : {
+
+    "&:hover": {
       backgroundColor: "trasparent"
     }
   },
   drawer: {
-    backgroundColor : theme.palette.common.arcBlue
+    backgroundColor: theme.palette.common.arcBlue
   },
-  drawerItem : {
-    
-  }
+  drawerItem: {
+    ...theme.typography.tab,
+    color: "white"
+  },
+  drawerItemEstmate: {
+    ...theme.typography.estimate
+  },
+  appBar: {
+    zIndex: theme.zIndex.modal + 0,
+    [theme.breakpoints.down("md")]: {
+      zIndex: theme.zIndex.modal + 1
+    },
+  },
+
 }));
 
 function Header(props) {
@@ -137,8 +148,8 @@ function Header(props) {
     setSelcted(i)
   }
 
-  const menuOptions = [{ name: "Services", link: "/services" }, { name: "custom Software Development ", link: "/customesoftware" }, { name: "Mobile App Development ", link: "/mobileapps" }, { name: "Website Development", link: "/websites" }, {name: "contact Us", link: "/con"}]
-  const tabsOptions = [{ name: "Home", link: "/" }, { name: "Services ", link: "/Services" }, { name: "The Revolution ", link: "/revolution" }, { name: "Website Development", link: "/websites" }, {name: "About Ua", link: "/about"}, {name: "contact Us", link: "/contact"}]
+  const menuOptions = [{ name: "Services", link: "/services" }, { name: "custom Software Development ", link: "/customesoftware" }, { name: "Mobile App Development ", link: "/mobileapps" }, { name: "Website Development", link: "/websites" }, { name: "contact Us", link: "/con" }]
+  const tabsOptions = [{ name: "Home", link: "/" }, { name: "Services ", link: "/Services" }, { name: "The Revolution ", link: "/revolution" }, { name: "Website Development", link: "/websites" }, { name: "About Ua", link: "/about" }, { name: "contact Us", link: "/contact" }, { name: "free Estimate", link: "/estimate" }]
   const tabs = (
     <React.Fragment>
       <Tabs
@@ -204,12 +215,21 @@ function Header(props) {
 
   const drawer = (
     <React.Fragment>
-      <SwipeableDrawer classes={{paper: classes.drawer }} disableBackdropTransition={!iOS} disableDiscovery={iOS} open={openDrawer} onClose={() => setOpenDrawer(false)} onOpen={() => setOpenDrawer(true)}>
+      <SwipeableDrawer classes={{ paper: classes.drawer }} disableBackdropTransition={!iOS} disableDiscovery={iOS} open={openDrawer} onClose={() => setOpenDrawer(false)} onOpen={() => setOpenDrawer(true)}>
+        <div className={classes.root} />
         <List disablePadding>
           {tabsOptions.map((item, i) => (
-            <ListItem onClick={() => setOpenDrawer(false)} divider button component={Link} to={item.link} >
-              <ListItemText className={classes.drawerItem} disableTypography>
-              {item.name}
+            <ListItem
+              key={item.name}
+              className={item.name === 'free Estimate' ? classes.drawerItemEstmate : ""}
+              onClick={() => setOpenDrawer(false)}
+              divider
+              button
+              component={Link}
+              to={item.link}
+            >
+              <ListItemText disableTypography>
+                {item.name}
               </ListItemText>
             </ListItem>
           ))}
@@ -227,7 +247,7 @@ function Header(props) {
   return (
     <React.Fragment>
       <ElevationScroll>
-        <AppBar position="fixed">
+        <AppBar position="fixed" className={classes.appBar}>
           <Toolbar disableGutters>
             <img className={classes.logo} src={logo} />
             {matches ? drawer : tabs}
