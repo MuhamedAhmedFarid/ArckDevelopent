@@ -1,17 +1,29 @@
-// import Header from "../ui/Header";
-import Header from './components/ui/Header'
+import { useState } from "react";
+import Header from "./components/ui/Header";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { ThemeProvider } from '@material-ui/core';
-import theme from './components/ui/Theme'
-import Footer from './components/ui/Footer';
- function App() {
+import { ThemeProvider } from "@material-ui/core";
+import theme from "./components/ui/Theme";
+import Footer from "./components/ui/Footer";
+
+function App() {
+  const [value, setValue] = useState(0);
+  const [selcted, setSelcted] = useState(0);
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
-      <Header />
+        <Header
+          value={value}
+          setValue={setValue}
+          selcted={selcted}
+          setSelcted={setSelcted}
+        />
         <Routes>
-          <Route exact path="/" element={<div style={{height: '1000px'}}>Home</div>} />
+          <Route
+            exact
+            path="/"
+            element={<div style={{ height: "1000px" }}>Home</div>}
+          />
           <Route path="/service" element={<div>service</div>} />
           <Route path="/customesoftware" element={<div>customsogtware</div>} />
           <Route path="/mobileapps" element={<div>mobielaps</div>} />
@@ -21,7 +33,12 @@ import Footer from './components/ui/Footer';
           <Route path="/contact" element={<div>contact</div>} />
           <Route path="/estimate" element={<div>estimate</div>} />
         </Routes>
-        <Footer />
+        <Footer
+          value={value}
+          setValue={setValue}
+          selcted={selcted}
+          setSelcted={setSelcted}
+        />
       </BrowserRouter>
     </ThemeProvider>
   );
