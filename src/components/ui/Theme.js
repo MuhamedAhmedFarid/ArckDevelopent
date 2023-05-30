@@ -27,7 +27,7 @@ export default createTheme({
             fontSize :"1rem", 
             textTransform: 'none',
             color: "white",
-            borderRadius: '50px',
+            borderRadius: '200px',
             backgroundColor:  "#FFBA60"
         }
     }

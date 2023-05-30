@@ -5,6 +5,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ThemeProvider } from "@material-ui/core";
 import theme from "./components/ui/Theme";
 import Footer from "./components/ui/Footer";
+// import LandingPage from "./components/LandingPage";
+import LandingPage from './components/LandingPage'
 
 function App() {
   const [value, setValue] = useState(0);
@@ -19,11 +21,13 @@ function App() {
           setSelcted={setSelcted}
         />
         <Routes>
-          <Route
+          {/* <Route
             exact
             path="/"
-            element={<div style={{ height: "1000px" }}>Home</div>}
-          />
+            element={LandingPage}
+            // component={LandingPage}
+          /> */}
+          <Route exact path="/" Component={LandingPage} />
           <Route path="/service" element={<div>service</div>} />
           <Route path="/customesoftware" element={<div>customsogtware</div>} />
           <Route path="/mobileapps" element={<div>mobielaps</div>} />
