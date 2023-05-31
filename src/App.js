@@ -21,12 +21,6 @@ function App() {
           setSelcted={setSelcted}
         />
         <Routes>
-          {/* <Route
-            exact
-            path="/"
-            element={LandingPage}
-            // component={LandingPage}
-          /> */}
           <Route exact path="/" Component={LandingPage} />
           <Route path="/service" element={<div>service</div>} />
           <Route path="/customesoftware" element={<div>customsogtware</div>} />
