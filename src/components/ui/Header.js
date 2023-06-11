@@ -93,6 +93,7 @@ const useStyles = makeStyles((theme) => ({
   },
   drawer: {
     backgroundColor: theme.palette.common.arcBlue,
+    
   },
   drawerItem: {
     ...theme.typography.tab,
@@ -100,6 +101,7 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerItemEstmate: {
     ...theme.typography.estimate,
+    
   },
   appBar: {
     zIndex: theme.zIndex.modal + 0,
@@ -251,22 +253,22 @@ function Header(props) {
               to={route.link}
               selected={props.value === route.activeTab}
               // classes={selcted: classes.drawerItemSelected}
+              // classes={{selcted: classes.drawerItemSelcted}}
               onClick={() => {
                 setOpenDrawer(false);
                 props.setValue(route.activeTab)
               }}
-              
-              
-
             >
+              
               <ListItemText className={classes.drawerItem} disableTypography>{route.name}</ListItemText>
             </ListItem>
           ))}
           <ListItem onClick={() => {
-            setOpenDrawer(false);
+            setOpenDrawer(false)
             props.setValue(5);
 
           }}
+          
             divider
             button
             component={Link}
@@ -277,8 +279,11 @@ function Header(props) {
             to="/estimate"
             selcted={props.value === 5}
           >
-
+           Free  Estimate 
           </ListItem>
+          
+
+          
         </List>
       </SwipeableDrawer>
       <IconButton
